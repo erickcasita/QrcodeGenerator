@@ -28,19 +28,16 @@ namespace QrcodeGenerator
         private void GenerateCodeQr(object sender, RoutedEventArgs e)
         {
             string data = Txt_data.Text;
-            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q))
-            using (QRCode qrCode = new QRCode(qrCodeData))
-            using (Bitmap qrBitmap = qrCode.GetGraphic(20))
-            {
-      
-                //string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                //string filePath = System.IO.Path.Combine(desktopPath, "qrcode.png");
-                qrBitmap.Save("qrcode.png", ImageFormat.Png);
-                MessageBox.Show($"Código QR Generado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                System.Diagnostics.Process.Start(new ProcessStartInfo("qrcode.png") { UseShellExecute = true });
+            using QRCodeGenerator qrGenerator = new ();
+            using QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+            using QRCode qrCode = new (qrCodeData);
+            using Bitmap qrBitmap = qrCode.GetGraphic(20);
 
-            }
+            //string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            //string filePath = System.IO.Path.Combine(desktopPath, "qrcode.png");
+            qrBitmap.Save("qrcode.png", ImageFormat.Png);
+            MessageBox.Show($"Código QR Generado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            System.Diagnostics.Process.Start(new ProcessStartInfo("qrcode.png") { UseShellExecute = true });
 
         }
     }
