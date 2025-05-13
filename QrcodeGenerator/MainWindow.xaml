@@ -8,9 +8,10 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        Title="QrcodeGenerator" Height="280" Width="400">
+        Title="QrcodeGenerator" Height="300" Width="400">
     <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -31,5 +32,7 @@
         
         <Button Grid.Row="4" Content="Generar Código QR" Height="30" Width="150"
                 HorizontalAlignment="Left" Margin="0,10,0,0" Click="GenerateCodeQr" />
+
+        <TextBlock Grid.Row="5" Name="Lbl_version" FontWeight="Bold" FontSize="10" Text="Version" Margin="0,10,0,0"/>
     </Grid>
 </Window>

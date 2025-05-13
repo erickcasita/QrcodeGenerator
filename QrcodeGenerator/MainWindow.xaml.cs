@@ -23,6 +23,7 @@ namespace QrcodeGenerator
         public MainWindow()
         {
             InitializeComponent();
+            Lbl_version.Text = "Versión" + Properties.Settings.Default.version;
         }
 
         private void GenerateCodeQr(object sender, RoutedEventArgs e)
