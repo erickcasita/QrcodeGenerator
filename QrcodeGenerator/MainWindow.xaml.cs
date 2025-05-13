@@ -29,6 +29,7 @@ namespace QrcodeGenerator
         {
             try
             {
+                Cursor = Cursors.Wait;
                 string data = Txt_data.Text;
                 using QRCodeGenerator qrGenerator = new();
                 using QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
@@ -40,8 +41,10 @@ namespace QrcodeGenerator
                 qrBitmap.Save("qrcode.png", ImageFormat.Png);
                 MessageBox.Show($"Código QR Generado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                 Process.Start(new ProcessStartInfo("qrcode.png") { UseShellExecute = true });
+                Txt_data.Clear();
+                Cursor = Cursors.Arrow;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al generar el código QR {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
