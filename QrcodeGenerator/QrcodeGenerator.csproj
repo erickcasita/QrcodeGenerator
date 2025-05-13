@@ -6,10 +6,25 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icons8-qr-code-100.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons8-código-qr-100.png" />
+    <None Remove="icons8-qr-code-100.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icons8-qr-code-100.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="QRCoder" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons8-código-qr-100.png" />
+    <Resource Include="icons8-qr-code-100.png" />
   </ItemGroup>
 
   <ItemGroup>

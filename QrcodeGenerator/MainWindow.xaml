@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        Title="QrcodeGenerator" Height="300" Width="400">
+        Title="QrcodeGenerator" Height="300" Width="400" Icon="/icons8-qr-code-100.png">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
