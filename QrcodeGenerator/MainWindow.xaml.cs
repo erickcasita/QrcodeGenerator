@@ -23,25 +23,33 @@ namespace QrcodeGenerator
         public MainWindow()
         {
             InitializeComponent();
+            Lbl_version.Text = "Versión" + Properties.Settings.Default.version;
         }
 
         private void GenerateCodeQr(object sender, RoutedEventArgs e)
         {
-            string data = Txt_data.Text;
-            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q))
-            using (QRCode qrCode = new QRCode(qrCodeData))
-            using (Bitmap qrBitmap = qrCode.GetGraphic(20))
+            try
             {
-      
+                Cursor = Cursors.Wait;
+                string data = Txt_data.Text;
+                using QRCodeGenerator qrGenerator = new();
+                using QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+                using QRCode qrCode = new(qrCodeData);
+                using Bitmap qrBitmap = qrCode.GetGraphic(20);
+
                 //string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 //string filePath = System.IO.Path.Combine(desktopPath, "qrcode.png");
                 qrBitmap.Save("qrcode.png", ImageFormat.Png);
                 MessageBox.Show($"Código QR Generado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                System.Diagnostics.Process.Start(new ProcessStartInfo("qrcode.png") { UseShellExecute = true });
-
+                Process.Start(new ProcessStartInfo("qrcode.png") { UseShellExecute = true });
+                Txt_data.Clear();
+                Cursor = Cursors.Arrow;
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al generar el código QR {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }
